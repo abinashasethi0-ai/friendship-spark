@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Friendship Spark 💜</title>
+<style>
+:root { --pink:#ff83cf; --purple:#8c52ff; --deep:#32105f; }
+* { box-sizing:border-box; }
+body {
+  margin:0; min-height:100vh; overflow-x:hidden; color:#fff;
+  font-family:system-ui,-apple-system,Segoe UI,sans-serif;
+  background:radial-gradient(circle at 20% 10%,#ffb2e6 0,transparent 32%),
+             radial-gradient(circle at 90% 85%,#bd8bff 0,transparent 35%),
+             linear-gradient(145deg,#5c2ba8,#d94fbc 55%,#7945d9);
+  display:flex; align-items:center; justify-content:center; padding:24px 14px;
+}
+.card {
+  width:min(100%,430px); position:relative; z-index:2; text-align:center;
+  padding:26px 22px 30px; border:1px solid #ffffff80; border-radius:28px;
+  background:#35135c66; backdrop-filter:blur(12px);
+  box-shadow:0 18px 55px #26003d55;
+}
+h1 { margin:8px 0; font-size:clamp(1.7rem,6vw,2.2rem); }
+.subtitle { margin:0 auto 16px; line-height:1.5; color:#ffeafa; }
+.pika-wrap { height:185px; display:flex; justify-content:center; align-items:center; position:relative; }
+.pika { position:relative; width:125px; height:112px; animation:bob 2s ease-in-out infinite; filter:drop-shadow(0 10px 8px #30004455); }
+.ear { position:absolute; top:-25px; width:28px; height:65px; background:#ffdf38; border:3px solid #b97b14; border-radius:80% 80% 20% 20%; z-index:0; }
+.ear.left { left:15px; transform:rotate(-28deg); }
+.ear.right { right:15px; transform:rotate(28deg); }
+.ear:after { content:""; position:absolute; top:0; left:0; right:0; height:25px; background:#302044; border-radius:80% 80% 15% 15%; }
+.face { position:absolute; inset:9px 3px 0; background:#ffdf38; border:3px solid #b97b14; border-radius:48% 48% 45% 45%; z-index:1; }
+.eye { position:absolute; top:38px; width:10px; height:14px; background:#29203b; border-radius:50%; }
+.eye.left { left:30px; } .eye.right { right:30px; }
+.eye:after { content:""; position:absolute; top:2px; left:2px; width:3px; height:4px; background:white; border-radius:50%; }
+.cheek { position:absolute; top:57px; width:20px; height:16px; background:#ff5b8d; border-radius:50%; box-shadow:0 0 12px #ff5b8d99; }
+.cheek.left { left:13px; } .cheek.right { right:13px; }
+.nose { position:absolute; top:56px; left:50%; width:5px; height:4px; background:#302044; border-radius:50%; transform:translateX(-50%); }
+.mouth { position:absolute; top:60px; left:50%; width:19px; height:11px; border-bottom:2px solid #302044; border-radius:0 0 50% 50%; transform:translateX(-50%); }
+.tail { position:absolute; right:-15px; bottom:3px; width:26px; height:34px; background:#ffdf38; border:3px solid #b97b14; clip-path:polygon(20% 0,100% 0,100% 25%,65% 25%,65% 100%,35% 100%,35% 48%,0 48%); transform:rotate(8deg); }
+.spark { position:absolute; color:#fff6a8; font-size:25px; animation:zap .9s steps(2,end) infinite; text-shadow:0 0 12px #fff; }
+.s1 { left:18px; top:28px; } .s2 { right:20px; top:45px; animation-delay:.35s; }
+.s3 { right:45px; top:5px; font-size:17px; animation-delay:.2s; }
+.heart { position:absolute; font-size:20px; bottom:15px; left:50%; opacity:0; animation:heartUp 3.2s ease-in infinite; pointer-events:none; }
+.h2 { animation-delay:1s; left:42%; } .h3 { animation-delay:2s; left:58%; }
+label { display:block; text-align:left; font-weight:700; margin:10px 0 7px; }
+input { width:100%; border:2px solid #ffffffa8; border-radius:14px; padding:14px; font-size:16px; color:#38104f; background:#fff8ff; outline:none; }
+input:focus { border-color:#ffe36e; box-shadow:0 0 0 3px #ffe36e44; }
+button { margin-top:12px; width:100%; border:0; border-radius:14px; padding:14px; font-weight:800; font-size:16px; color:#50105f; background:linear-gradient(90deg,#ffd5f0,#ffe77d); cursor:pointer; box-shadow:0 7px 18px #26003d44; }
+button:active { transform:scale(.98); }
+.result { display:none; margin-top:20px; padding:17px 12px; border-radius:18px; background:#ffffff1c; line-height:1.7; }
+.result.show { display:block; animation:appear .6s ease both; }
+.result h2 { margin:0 0 8px; color:#fff2a8; }
+#typed { min-height:3.4em; }
+.floating { position:fixed; z-index:1; bottom:-40px; pointer-events:none; animation:float 7s linear forwards; opacity:.85; }
+.note { font-size:12px; opacity:.8; margin-top:16px; }
+@keyframes bob { 0%,100%{transform:translateY(0) rotate(-2deg)} 50%{transform:translateY(-8px) rotate(2deg)} }
+@keyframes zap { 0%,100%{opacity:.35;transform:scale(.85)} 50%{opacity:1;transform:scale(1.18)} }
+@keyframes heartUp { 0%{transform:translate(-50%,0) scale(.6);opacity:0} 15%{opacity:1} 100%{transform:translate(-50%,-160px) scale(1.25) rotate(15deg);opacity:0} }
+@keyframes float { to { transform:translateY(-115vh) rotate(35deg); opacity:0; } }
+@keyframes appear { from{opacity:0;transform:translateY(10px)} to{opacity:1;transform:translateY(0)} }
+@media (prefers-reduced-motion: reduce) { *,*::before,*::after { animation-duration:.01ms !important; animation-iteration-count:1 !important; scroll-behavior:auto !important; } }
+</style>
+</head>
+<body>
+<main class="card">
+  <div class="pika-wrap" aria-label="A cute yellow electric mouse character with hearts and sparks">
+    <span class="spark s1">ϟ</span><span class="spark s2">⚡</span><span class="spark s3">✦</span>
+    <div class="pika" aria-hidden="true">
+      <div class="ear left"></div><div class="ear right"></div><div class="tail"></div>
+      <div class="face">
+        <span class="eye left"></span><span class="eye right"></span>
+        <span class="cheek left"></span><span class="cheek right"></span>
+        <span class="nose"></span><span class="mouth"></span>
+      </div>
+    </div>
+    <span class="heart">💗</span><span class="heart h2">💖</span><span class="heart h3">💕</span>
+  </div>
+  <h1>Friendship Spark 💜</h1>
+  <p class="subtitle">A little hello can be the start of a lovely friendship ✨</p>
+  <form id="nameForm">
+    <label for="name">What's your name? 💗</label>
+    <input id="name" name="name" maxlength="35" autocomplete="given-name" placeholder="Enter your name..." required>
+    <button type="submit">Let's Go ✨</button>
+  </form>
+  <section class="result" id="result" aria-live="polite">
+    <h2 id="greeting">Hey, friend! 💖</h2>
+    <p id="typed"></p>
+  </section>
+  <p class="note">Made for a new friendship 💫</p>
+</main>
+<script>
+const form = document.getElementById('nameForm');
+const nameInput = document.getElementById('name');
+const result = document.getElementById('result');
+const greeting = document.getElementById('greeting');
+const typed = document.getElementById('typed');
+const message = "You seem like a kind person. I'm glad we got to know each other! Here's to a happy new friendship. 💜";
+let timer;
+form.addEventListener('submit', function(event) {
+  event.preventDefault();
+  const name = nameInput.value.trim().replace(/\s+/g, ' ');
+  if (!name) { nameInput.focus(); return; }
+  clearInterval(timer);
+  greeting.textContent = `Hey, ${name}! 💖`;
+  typed.textContent = '';
+  result.classList.remove('show');
+  void result.offsetWidth;
+  result.classList.add('show');
+  let i = 0;
+  timer = setInterval(() => {
+    typed.textContent = message.slice(0, i + 1);
+    i++;
+    if (i >= message.length) clearInterval(timer);
+  }, 38);
+});
+function floatDecoration() {
+  const el = document.createElement('span');
+  el.className = 'floating';
+  el.textContent = ['💗','✨','💕','⚡','💖'][Math.floor(Math.random()*5)];
+  el.style.left = Math.random()*96 + 'vw';
+  el.style.fontSize = (14 + Math.random()*16) + 'px';
+  el.style.animationDuration = (5 + Math.random()*4) + 's';
+  document.body.appendChild(el);
+  setTimeout(() => el.remove(), 9500);
+}
+setInterval(floatDecoration, 650);
+</script>
+</body>
+</html>
